@@ -10,12 +10,13 @@ before_script:
   - psql -U postgres -c "ALTER USER decideexamen CREATEDB"
 language: python
 python:
-  - "3.7"
+  - "3.6"
+  - "3.8"
 install:
   - pip install -r requirements.txt
   - pip install codacy-coverage
 script:
   - cd decide
-  - coverage run --branch --source=. ./manage.py test voting --keepdb 
+  - coverage run --branch --source=. ./manage.py test authentication census --keepdb 
   - coverage xml
   - python-codacy-coverage -r coverage.xml
